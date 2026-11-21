@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Joke Generater: </h1>
+    <span id="setup">Setup: </span> <br/>
+    <mark id="delivery">Punchline: </mark> <br/>
+    <button id="btn">Click Me</button>
+    <script>
+        let ele = document.getElementById("btn")
+        let delivery = document.getElementById("delivery")
+        let setup = document.getElementById("setup")
+
+        async function jokegeneter() {
+            const data = await fetch("https://v2.jokeapi.dev/joke/Any?type=twopart")
+            console.log(data)
+            const result = await data;
+            const response = await data.json()
+            console.log(response.setup)
+            console.log(response.delivery)
+            delivery.innerHTML = "Delivery: " + response.delivery
+            setup.innerHTML = "Setup: " + response.setup
+        }
+        ele.addEventListener("click", jokegeneter)
+    </script>
+</body>
+</html>
